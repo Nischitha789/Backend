@@ -11,10 +11,18 @@ const generateToken = (res, userId) => {
   //   sameSite: "strict",
   //   maxAge: 30 * 24 * 60 * 60 * 1000,
   // });
+  // res.cookie("jwt", token, {
+  //   httpOnly: false,
+  //   secure: true,
+  //   sameSite: "none",
+  //   maxAge: 30 * 24 * 60 * 60 * 1000,
+  // });
+
+  //Set JWT as an HTTP-Only Cookie
   res.cookie("jwt", token, {
-    httpOnly: false,
-    secure: true,
-    sameSite: "none",
+    httpOnly: true,
+    secure: process.env.NODE_ENV !== "development",
+    sameSite: "strict",
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 
